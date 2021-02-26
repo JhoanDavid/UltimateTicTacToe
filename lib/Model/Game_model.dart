@@ -15,14 +15,39 @@ class Game {
       this.roundsNum,
       this.actualRound,
       this.state});
+}
 
-  void incrementActualRound() {
+/*player.score>(rounds/2) ganador (bloc)
+
+
+  void incrementScore() {
+    this.score++;
+  }
+
+  void resetScore() {
+    this.score = 0;
+  }
+  
+void incrementActualRound() {
     this.actualRound++;
   }
 
   void resetActualRound() {
     this.actualRound = 1;
   }
-}
 
-//player.score>(rounds/2) ganador (bloc)
+  void insertValue(index, playerNum) {
+    String value;
+    if (playerNum == 1) {
+      value = "O";
+    } else {
+      value = "X";
+    }
+    this.board[index] = value;
+  }
+
+  void resetBoard() {
+    this.board = ['', '', '', '', '', '', '', '', ''];
+  }
+
+*/
