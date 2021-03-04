@@ -12,6 +12,7 @@ class GameBloc {
     _game = Game();
     _board = Board();
     _player = Player();
+    count = 0;
   }
 
   Game createGame(Game game) {
@@ -59,22 +60,22 @@ class GameBloc {
   Player verifyRoundWin(Game game) {
     this._board = game.board;
     if (possibleWinRound(_board, 'X')) {
-      incrementScore(game.player1);
-      game.roundsNum++;
+      game.player1.score = incrementScore(game.player1);
+      game.actualRound++;
       return game.player1;
     } else if (possibleWinRound(_board, 'O')) {
-      incrementScore(game.player2);
-      game.roundsNum++;
+      game.player2.score = incrementScore(game.player2);
+      game.actualRound++;
       return game.player2;
     } else {
-      game.roundsNum++;
+      game.actualRound++;
       return null;
     }
   }
 
-  void insertValue(int index, Game game) {
+  Board insertValue(int index, Game game, int numPlay) {
     String value;
-    if (game.player1.number == 1) {
+    if (game.player1.number == numPlay) {
       value = "X";
     } else {
       value = "O";
@@ -85,11 +86,14 @@ class GameBloc {
     if (verifyMoviments(game, count) != null) {
       verifyMoviments(game, count);
     }
+    return game.board;
   }
 
   void GameOver(Game game) {
-    _player = verifyGameWinner(game);
-    print("El ganador es" + _player.name);
+    if (game.actualRound == game.roundsNum) {
+      _player = verifyGameWinner(game);
+      print("El ganador es" + _player.name);
+    }
   }
 
   Player verifyMoviments(Game game, int count) {
@@ -99,8 +103,9 @@ class GameBloc {
       } else {
         return this.verifyRoundWin(game);
       }
+    } else {
+      return null;
     }
-    return null;
   }
 
   Player verifyGameWinner(Game game) {
@@ -114,19 +119,16 @@ class GameBloc {
     }
   }
 
-  void incrementScore(Player player) {
-    player.score++;
+  int incrementScore(Player player) {
+    return player.score++;
   }
 
   void resetScore(Game game) {
     game.player1.score = 0;
     game.player2.score = 0;
+    game.roundsNum = 0;
+    game.actualRound = 1;
     this.count == 0;
-  }
-
-  Game incrementActualRound(Game game) {
-    game.roundsNum++;
-    return game;
   }
 
 /*player.score>(rounds/2) ganador (bloc)
