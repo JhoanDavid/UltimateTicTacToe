@@ -6,18 +6,20 @@ class GameBloc {
   int count;
   Game _game;
   Board _board;
+  Player _player;
 
   GameBloc() {
     _game = Game();
     _board = Board();
+    _player = Player();
   }
 
   Game createGame(Game game) {
-    _game.board = _board;
     _game.player1 = game.player1;
     _game.player2 = game.player2;
     _game.player1.number = 1;
     _game.player2.number = 2;
+    _game.board = _board;
     this.count = 0;
 
     return _game;
@@ -73,14 +75,21 @@ class GameBloc {
   void insertValue(int index, Game game) {
     String value;
     if (game.player1.number == 1) {
-      value = "O";
-    } else {
       value = "X";
+    } else {
+      value = "O";
     }
 
     game.board.board[index] = value;
     count++;
-    verifyMoviments(game, count);
+    if (verifyMoviments(game, count) != null) {
+      verifyMoviments(game, count);
+    }
+  }
+
+  void GameOver(Game game) {
+    _player = verifyGameWinner(game);
+    print("El ganador es" + _player.name);
   }
 
   Player verifyMoviments(Game game, int count) {
@@ -91,6 +100,7 @@ class GameBloc {
         return this.verifyRoundWin(game);
       }
     }
+    return null;
   }
 
   Player verifyGameWinner(Game game) {
