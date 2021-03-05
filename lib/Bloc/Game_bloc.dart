@@ -20,6 +20,7 @@ class GameBloc {
     _game.player2 = game.player2;
     _game.player1.number = 1;
     _game.player2.number = 2;
+    _game.move = 0;
     _game.board = _board;
     this.count = 0;
 
@@ -80,11 +81,13 @@ class GameBloc {
     } else {
       value = "O";
     }
-
-    game.board.board[index] = value;
-    count++;
-    if (verifyMoviments(game, count) != null) {
-      verifyMoviments(game, count);
+    if (game.board.board[index] == '') {
+      game.board.board[index] = value;
+      game.move++;
+      print(game.move);
+      if (verifyMoviments(game, count) != null) {
+        verifyMoviments(game, count);
+      }
     }
     return game.board;
   }
@@ -97,7 +100,7 @@ class GameBloc {
   }
 
   Player verifyMoviments(Game game, int count) {
-    if (count >= 6) {
+    if (count >= 5) {
       if (this.verifyRoundWin(game) == null) {
         print("en juego");
       } else {

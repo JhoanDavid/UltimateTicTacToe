@@ -5,6 +5,7 @@ class Game {
   Player player1;
   Player player2;
   Board board;
+  int move = 0;
   int roundsNum = 0;
   int actualRound = 1;
   bool state = false;
@@ -14,7 +15,8 @@ class Game {
       this.board,
       this.roundsNum,
       this.actualRound,
-      this.state});
+      this.state,
+      this.move});
 }
 
 /*player.score>(rounds/2) ganador (bloc)

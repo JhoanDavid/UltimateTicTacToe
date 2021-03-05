@@ -15,14 +15,13 @@ class Prueba extends StatefulWidget {
 class _PruebaState extends State<Prueba> {
   GameBloc gameBloc;
 
-  Board board = Board(board: ['', '', '', '', '', '', '', '', '']);
   Game game = Game(
       player1: Player(name: "Oscar", number: 1, score: 0),
       player2: Player(name: "Alberto", number: 2, score: 0),
       board: Board(board: ['', '', '', '', '', '', '', '', '']),
       actualRound: 1,
-      roundsNum: 5);
-  List<String> arr = ['X', '', '', 'X', 'X', 'X', '', 'X', ''];
+      roundsNum: 5,
+      move: 0);
   @override
   void initState() {
     gameBloc = GameBloc();
@@ -31,10 +30,11 @@ class _PruebaState extends State<Prueba> {
   @override
   Widget build(BuildContext context) {
     gameBloc.createGame(game);
-    print(arr);
     print(game.board.board);
     print(GameBloc().insertValue(0, game, 2).board);
+    print(GameBloc().insertValue(4, game, 1).board);
     print(GameBloc().insertValue(1, game, 2).board);
+    print(GameBloc().insertValue(5, game, 1).board);
     print(GameBloc().insertValue(2, game, 2).board);
     //   print(GameBloc().insertValue(4, game, 1).board);
     print(GameBloc().possibleWinRound(game.board, "O"));
