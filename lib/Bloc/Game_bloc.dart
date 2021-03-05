@@ -3,7 +3,6 @@ import 'package:ultimate_tic_tac_toe/Model/Game_model.dart';
 import 'package:ultimate_tic_tac_toe/Model/Player_model.dart';
 
 class GameBloc {
-  int count;
   Game _game;
   Board _board;
   Player _player;
@@ -12,7 +11,6 @@ class GameBloc {
     _game = Game();
     _board = Board();
     _player = Player();
-    count = 0;
   }
 
   Game createGame(Game game) {
@@ -22,7 +20,6 @@ class GameBloc {
     _game.player2.number = 2;
     _game.move = 0;
     _game.board = _board;
-    this.count = 0;
 
     return _game;
   }
@@ -85,8 +82,8 @@ class GameBloc {
       game.board.board[index] = value;
       game.move++;
       print(game.move);
-      if (verifyMoviments(game, count) != null) {
-        verifyMoviments(game, count);
+      if (verifyMoviments(game) != null) {
+        verifyMoviments(game);
       }
     }
     return game.board;
@@ -99,8 +96,8 @@ class GameBloc {
     }
   }
 
-  Player verifyMoviments(Game game, int count) {
-    if (count >= 5) {
+  Player verifyMoviments(Game game) {
+    if (game.move >= 5) {
       if (this.verifyRoundWin(game) == null) {
         print("en juego");
       } else {
@@ -131,7 +128,7 @@ class GameBloc {
     game.player2.score = 0;
     game.roundsNum = 0;
     game.actualRound = 1;
-    this.count == 0;
+    game.move = 0;
   }
 
 /*player.score>(rounds/2) ganador (bloc)
