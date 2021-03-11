@@ -1,6 +1,7 @@
 import 'package:ultimate_tic_tac_toe/Model/Board_model.dart';
-import 'package:ultimate_tic_tac_toe/Model/Game_model.dart';
+
 import 'package:ultimate_tic_tac_toe/Model/Player_model.dart';
+import 'package:ultimate_tic_tac_toe/model/Game_model.dart';
 
 class GameBloc {
   int count;
@@ -60,15 +61,23 @@ class GameBloc {
 
   Player verifyRoundWin(Game game) {
     this._board = game.board;
-    if (possibleWinRound(_board, 'X')) {
-      game.player1.score = incrementScore(game.player1);
+    print(game.board);
+    if (possibleWinRound(game.board, 'X')) {
+      game.player1.score++;
+      print(game.board.board);
+      resetBoard(game);
+      print(game.board.board);
       game.actualRound++;
       return game.player1;
-    } else if (possibleWinRound(_board, 'O')) {
-      game.player2.score = incrementScore(game.player2);
+    } else if (possibleWinRound(game.board, 'O')) {
+      game.player2.score++;
+      print(game.board.board);
+      resetBoard(game);
+      print(game.board.board);
       game.actualRound++;
       return game.player2;
     } else {
+      print('empate');
       game.actualRound++;
       return null;
     }
@@ -81,10 +90,11 @@ class GameBloc {
     } else {
       value = "O";
     }
+    print(value);
     if (game.board.board[index] == '') {
       game.board.board[index] = value;
+      print(game.board.board);
       game.move++;
-      print(game.move);
       if (verifyMoviments(game, count) != null) {
         verifyMoviments(game, count);
       }
@@ -92,7 +102,7 @@ class GameBloc {
     return game.board;
   }
 
-  void GameOver(Game game) {
+  void gameOver(Game game) {
     if (game.actualRound == game.roundsNum) {
       _player = verifyGameWinner(game);
       print("El ganador es" + _player.name);
@@ -131,7 +141,10 @@ class GameBloc {
     game.player2.score = 0;
     game.roundsNum = 0;
     game.actualRound = 1;
-    this.count == 0;
+  }
+
+  void resetBoard(Game game) {
+    game.board.board = ['', '', '', '', '', '', '', '', ''];
   }
 
 /*player.score>(rounds/2) ganador (bloc)
@@ -163,10 +176,7 @@ void incrementActualRound() {
     this.board[index] = value;
   }
 
-  void resetBoard() {
-    this.board = ['', '', '', '', '', '', '', '', ''];
-  }
-
+  
 */
 
 }

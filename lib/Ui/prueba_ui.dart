@@ -1,10 +1,7 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:ultimate_tic_tac_toe/Bloc/Game_bloc.dart';
 import 'package:ultimate_tic_tac_toe/Model/Board_model.dart';
-import 'package:ultimate_tic_tac_toe/Model/Game_model.dart';
+import 'package:ultimate_tic_tac_toe/model/Game_model.dart';
 import 'package:ultimate_tic_tac_toe/Model/Player_model.dart';
 
 class Prueba extends StatefulWidget {
