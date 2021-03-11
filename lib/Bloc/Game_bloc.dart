@@ -4,7 +4,6 @@ import 'package:ultimate_tic_tac_toe/Model/Player_model.dart';
 import 'package:ultimate_tic_tac_toe/model/Game_model.dart';
 
 class GameBloc {
-  int count;
   Game _game;
   Board _board;
   Player _player;
@@ -13,7 +12,6 @@ class GameBloc {
     _game = Game();
     _board = Board();
     _player = Player();
-    count = 0;
   }
 
   Game createGame(Game game) {
@@ -23,7 +21,6 @@ class GameBloc {
     _game.player2.number = 2;
     _game.move = 0;
     _game.board = _board;
-    this.count = 0;
 
     return _game;
   }
@@ -86,17 +83,18 @@ class GameBloc {
   Board insertValue(int index, Game game, int numPlay) {
     String value;
     if (game.player1.number == numPlay) {
-      value = "X";
+      value = 'X';
     } else {
-      value = "O";
+      value = 'O';
     }
     print(value);
     if (game.board.board[index] == '') {
       game.board.board[index] = value;
       print(game.board.board);
       game.move++;
-      if (verifyMoviments(game, count) != null) {
-        verifyMoviments(game, count);
+      print(game.move);
+      if (verifyMoviments(game) != null) {
+        verifyMoviments(game);
       }
     }
     return game.board;
@@ -105,16 +103,17 @@ class GameBloc {
   void gameOver(Game game) {
     if (game.actualRound == game.roundsNum) {
       _player = verifyGameWinner(game);
-      print("El ganador es" + _player.name);
+      print('El ganador es' + _player.name);
     }
   }
 
-  Player verifyMoviments(Game game, int count) {
-    if (count >= 5) {
-      if (this.verifyRoundWin(game) == null) {
-        print("en juego");
+  Player verifyMoviments(Game game) {
+    if (game.move >= 5) {
+      if (verifyRoundWin(game) == null) {
+        print('en juego');
+        return null;
       } else {
-        return this.verifyRoundWin(game);
+        return verifyRoundWin(game);
       }
     } else {
       return null;
@@ -122,7 +121,7 @@ class GameBloc {
   }
 
   Player verifyGameWinner(Game game) {
-    double rounds = game.roundsNum / 2;
+    var rounds = game.roundsNum / 2;
     if (game.player1.score > rounds) {
       resetScore(game);
       return game.player1;

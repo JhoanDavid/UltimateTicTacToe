@@ -13,8 +13,8 @@ class _PruebaState extends State<Prueba> {
   GameBloc gameBloc;
 
   Game game = Game(
-      player1: Player(name: "Oscar", number: 1, score: 0),
-      player2: Player(name: "Alberto", number: 2, score: 0),
+      player1: Player(name: 'Oscar', number: 1, score: 0),
+      player2: Player(name: 'Alberto', number: 2, score: 0),
       board: Board(board: ['', '', '', '', '', '', '', '', '']),
       actualRound: 1,
       roundsNum: 5,
@@ -34,9 +34,9 @@ class _PruebaState extends State<Prueba> {
     print(GameBloc().insertValue(5, game, 1).board);
     print(GameBloc().insertValue(2, game, 2).board);
     //   print(GameBloc().insertValue(4, game, 1).board);
-    print(GameBloc().possibleWinRound(game.board, "O"));
+    print(GameBloc().possibleWinRound(game.board, 'O'));
     return Container(
-      child: Text("Prueba"),
+      child: Text('Prueba'),
     );
   }
 
