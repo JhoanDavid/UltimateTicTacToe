@@ -22,19 +22,12 @@ class _PruebaState extends State<Prueba> {
   @override
   void initState() {
     gameBloc = GameBloc();
+    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     gameBloc.createGame(game);
-    print(game.board.board);
-    print(GameBloc().insertValue(0, game, 2).board);
-    print(GameBloc().insertValue(4, game, 1).board);
-    print(GameBloc().insertValue(1, game, 2).board);
-    print(GameBloc().insertValue(5, game, 1).board);
-    print(GameBloc().insertValue(2, game, 2).board);
-    //   print(GameBloc().insertValue(4, game, 1).board);
-    print(GameBloc().possibleWinRound(game.board, 'O'));
     return Container(
       child: Text('Prueba'),
     );

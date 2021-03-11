@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class TicTacToeUltimate extends StatelessWidget {
-  double sizeX, sizeO, sizeUltimate, sizeTicTacToe;
+  final double sizeX, sizeO, sizeUltimate, sizeTicTacToe;
   TicTacToeUltimate(
       {Key key,
       @required this.sizeX,

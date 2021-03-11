@@ -57,24 +57,23 @@ class GameBloc {
   }
 
   Player verifyRoundWin(Game game) {
-    this._board = game.board;
-    print(game.board);
+    _board = game.board;
+
     if (possibleWinRound(game.board, 'X')) {
       game.player1.score++;
-      print(game.board.board);
+
       resetBoard(game);
-      print(game.board.board);
+
       game.actualRound++;
       return game.player1;
     } else if (possibleWinRound(game.board, 'O')) {
       game.player2.score++;
-      print(game.board.board);
+
       resetBoard(game);
-      print(game.board.board);
+
       game.actualRound++;
       return game.player2;
     } else {
-      print('empate');
       game.actualRound++;
       return null;
     }
@@ -87,12 +86,12 @@ class GameBloc {
     } else {
       value = 'O';
     }
-    print(value);
+
     if (game.board.board[index] == '') {
       game.board.board[index] = value;
-      print(game.board.board);
+
       game.move++;
-      print(game.move);
+
       if (verifyMoviments(game) != null) {
         verifyMoviments(game);
       }
@@ -103,14 +102,12 @@ class GameBloc {
   void gameOver(Game game) {
     if (game.actualRound == game.roundsNum) {
       _player = verifyGameWinner(game);
-      print('El ganador es' + _player.name);
     }
   }
 
   Player verifyMoviments(Game game) {
     if (game.move >= 5) {
       if (verifyRoundWin(game) == null) {
-        print('en juego');
         return null;
       } else {
         return verifyRoundWin(game);

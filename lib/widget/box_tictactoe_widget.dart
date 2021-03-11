@@ -57,7 +57,7 @@ class _BoxState extends State<Box> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          content: Text("GANA EL JUEGO: " + name,
+          content: Text('GANA EL JUEGO: ' + name,
               style: GoogleFonts.bungee(
                 fontSize: 25,
                 fontWeight: FontWeight.w400,
@@ -75,7 +75,7 @@ class _BoxState extends State<Box> {
                           style: Theme.of(context).textTheme.bodyText1,
                           children: [
                             TextSpan(
-                                text: "Siguiente ronda",
+                                text: 'Siguiente ronda',
                                 style: GoogleFonts.bungee(
                                   fontSize: 10,
                                   fontWeight: FontWeight.w400,

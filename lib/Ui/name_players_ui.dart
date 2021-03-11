@@ -57,12 +57,6 @@ class NamePlayerPage extends StatelessWidget {
   }
 
   Future<dynamic> _goToGame(BuildContext context) {
-    print(game.actualRound);
-    print(game.board);
-    print(game.move);
-    print(game.roundsNum);
-    print(game.player1.name);
-    print(game.player2.name);
     return Navigator.of(context)
         .push(MaterialPageRoute(builder: (context) => GamePage(game: game)));
   }
@@ -71,17 +65,17 @@ class NamePlayerPage extends StatelessWidget {
     var keyboardVisibilityController = KeyboardVisibilityController();
 
     keyboardVisibilityController.onChange.listen((bool visible) {
-      this.keyboard = visible;
+      keyboard = visible;
     });
 
-    if (this.keyboard == true) {
+    if (keyboard == true) {
       return TicTacToeUltimate(
         sizeX: 40,
         sizeO: 28,
         sizeTicTacToe: 20,
         sizeUltimate: 35,
       );
-    } else if (this.keyboard == false) {
+    } else {
       return TicTacToeUltimate(
         sizeX: 140,
         sizeO: 108,
