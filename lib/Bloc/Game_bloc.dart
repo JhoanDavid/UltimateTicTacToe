@@ -56,7 +56,7 @@ class GameBloc {
   }
 
   Player verifyRoundWin(Game game) {
-    this._board = game.board;
+    _board = game.board;
     if (possibleWinRound(_board, 'X')) {
       game.player1.score = incrementScore(game.player1);
       game.actualRound++;
@@ -74,9 +74,9 @@ class GameBloc {
   Board insertValue(int index, Game game, int numPlay) {
     String value;
     if (game.player1.number == numPlay) {
-      value = "X";
+      value = 'X';
     } else {
-      value = "O";
+      value = 'O';
     }
     if (game.board.board[index] == '') {
       game.board.board[index] = value;
@@ -92,16 +92,17 @@ class GameBloc {
   void GameOver(Game game) {
     if (game.actualRound == game.roundsNum) {
       _player = verifyGameWinner(game);
-      print("El ganador es" + _player.name);
+      print('El ganador es' + _player.name);
     }
   }
 
   Player verifyMoviments(Game game) {
     if (game.move >= 5) {
-      if (this.verifyRoundWin(game) == null) {
-        print("en juego");
+      if (verifyRoundWin(game) == null) {
+        print('en juego');
+        return null;
       } else {
-        return this.verifyRoundWin(game);
+        return verifyRoundWin(game);
       }
     } else {
       return null;
@@ -109,7 +110,7 @@ class GameBloc {
   }
 
   Player verifyGameWinner(Game game) {
-    double rounds = game.roundsNum / 2;
+    var rounds = game.roundsNum / 2;
     if (game.player1.score > rounds) {
       resetScore(game);
       return game.player1;

@@ -1,0 +1,24 @@
+linter:
+  rules:
+    - camel_case_types 
+    - avoid_print #no permite prints en produccion
+    - always_declare_return_types
+    - avoid_init_to_null #no se puede inicializar variables en null
+    - avoid_types_as_parameter_names #no permite nombrar las variables como tipos
+    - camel_case_extensions
+    - curly_braces_in_flow_control_structures #llaves
+    - empty_catches #evita catchs sin usar
+    - library_names #nombre de las librerias debe ser lowercase con underscore
+    - library_prefixes #nombre de las librerias con un AS debe ser lowercase con underscore
+    - no_duplicate_case_values
+    - omit_local_variable_types #no es necesario colocar el tipo en las variables locales (que sea var)
+    - prefer_adjacent_string_concatenation #no se necesita el + para concatenar 2 strings
+    - prefer_collection_literals # [] declaraciones de listas
+    - prefer_equal_for_default_values #preferir = en valores por defecto en vez del :
+    - prefer_inlined_adds #['a','b']
+    - prefer_is_empty #usar la funcion .isempty en vez de length==0
+    - prefer_is_not_empty #usar is not empty y no !isempty
+    - prefer_single_quotes #usar comillas simples a no ser que el string tenga comillas simples entonces se usaria comillas dobles
+    - unnecessary_const #evita volver a colocar const de una constante ya declarada
+    - unnecessary_this
+    
