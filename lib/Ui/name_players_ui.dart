@@ -10,6 +10,7 @@ import 'package:ultimate_tic_tac_toe/widget/background_widget.dart';
 import 'package:ultimate_tic_tac_toe/widget/name_ultimate_widget.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 
+// ignore: must_be_immutable
 class NamePlayerPage extends StatelessWidget {
   Game game;
   bool keyboard = false;

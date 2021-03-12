@@ -4,14 +4,17 @@ import 'package:ultimate_tic_tac_toe/Model/Player_model.dart';
 import 'package:ultimate_tic_tac_toe/model/Game_model.dart';
 
 class GameBloc {
+  int count;
   Game _game;
   Board _board;
+  // ignore: unused_field
   Player _player;
 
   GameBloc() {
     _game = Game();
     _board = Board();
     _player = Player();
+    count = 0;
   }
 
   Game createGame(Game game) {
@@ -21,6 +24,7 @@ class GameBloc {
     _game.player2.number = 2;
     _game.move = 0;
     _game.board = _board;
+    count = 0;
 
     return _game;
   }
@@ -58,19 +62,14 @@ class GameBloc {
 
   Player verifyRoundWin(Game game) {
     _board = game.board;
-
     if (possibleWinRound(game.board, 'X')) {
       game.player1.score++;
-
       resetBoard(game);
-
       game.actualRound++;
       return game.player1;
     } else if (possibleWinRound(game.board, 'O')) {
       game.player2.score++;
-
       resetBoard(game);
-
       game.actualRound++;
       return game.player2;
     } else {
@@ -86,14 +85,11 @@ class GameBloc {
     } else {
       value = 'O';
     }
-
     if (game.board.board[index] == '') {
       game.board.board[index] = value;
-
       game.move++;
-
-      if (verifyMoviments(game) != null) {
-        verifyMoviments(game);
+      if (verifyMoviments(game, count) != null) {
+        verifyMoviments(game, count);
       }
     }
     return game.board;
@@ -105,16 +101,16 @@ class GameBloc {
     }
   }
 
-  Player verifyMoviments(Game game) {
-    if (game.move >= 5) {
+  Player verifyMoviments(Game game, int count) {
+    if (count >= 5) {
       if (verifyRoundWin(game) == null) {
-        return null;
       } else {
         return verifyRoundWin(game);
       }
     } else {
       return null;
     }
+    return null;
   }
 
   Player verifyGameWinner(Game game) {
