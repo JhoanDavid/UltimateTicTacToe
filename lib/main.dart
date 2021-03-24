@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: StartupView(title: 'Tic Tac Toe GAME'),
+      home: Text("Mascotas"),
     );
   }
 }
