@@ -11,7 +11,6 @@ linter:
     - library_names #nombre de las librerias debe ser lowercase con underscore
     - library_prefixes #nombre de las librerias con un AS debe ser lowercase con underscore
     - no_duplicate_case_values
-    - omit_local_variable_types #no es necesario colocar el tipo en las variables locales (que sea var)
     - prefer_adjacent_string_concatenation #no se necesita el + para concatenar 2 strings
     - prefer_collection_literals # [] declaraciones de listas
     - prefer_equal_for_default_values #preferir = en valores por defecto en vez del :
