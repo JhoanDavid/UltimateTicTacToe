@@ -52,7 +52,9 @@ class PetBloc {
     return apiResponse;
   }
 
-  /* Future<ApiResponse> getPetByName(String name) async {
+  /* 
+  //filtro por nombre
+  Future<ApiResponse> getPetByName(String name) async {
     ApiResponse apiResponse = await _repository.getPetByName(name);
     return apiResponse;
   }*/
