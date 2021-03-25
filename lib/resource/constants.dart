@@ -10,4 +10,7 @@ class Constants {
   static const urlFindByIdPet = pathBase + '/mascota/id';
   static const urlFindByNamePet = pathBase + '/mascota/nombre';
   static const urlDeletePet = pathBase + '/mascota/delete';
+  static const insertSuccess = 'El registro se realizó correctamente.';
+  static const updateSuccess = 'El registro se actualizó correctamente.';
+  static const deleteSuccess = 'El registro se eliminó correctamente.';
 }
