@@ -10,6 +10,8 @@ import 'package:ultimate_tic_tac_toe/widget/title_widget.dart';
 import 'home_ui.dart';
 
 class PetRegister extends StatefulWidget {
+  PetRegister({Key key}) : super(key: key);
+
   @override
   _PetRegisterState createState() => _PetRegisterState();
 }
@@ -61,11 +63,6 @@ class _PetRegisterState extends State<PetRegister> {
   List<String> lista() {
     _list = ['Macho', 'Hembra'];
     return _list;
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Container();
   }
 
   Widget _entryField(String title) {
