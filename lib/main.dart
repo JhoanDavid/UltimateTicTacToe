@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'Ui/pet_ui.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -15,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Text('Mascotas'),
+      home: PetRegister(),
     );
   }
 }
