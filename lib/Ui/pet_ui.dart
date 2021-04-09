@@ -199,7 +199,7 @@ class _PetRegisterState extends State<PetRegister> {
   Widget _backButton() {
     return InkWell(
       onTap: () {
-        Navigator.pop(context);
+        Navigator.of(context).push(_goHomeTransition());
       },
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 10),
