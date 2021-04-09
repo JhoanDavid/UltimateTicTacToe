@@ -52,16 +52,18 @@ class PetBloc {
     return apiResponse;
   }
 
-  @override
   void dispose() {
     _petController.close();
     _petListController.close();
   }
 
-  /* 
   //filtro por nombre
   Future<ApiResponse> getPetByName(String name) async {
     ApiResponse apiResponse = await _repository.getPetByName(name);
+    if (apiResponse.statusResponse == 200) {
+      List<Pet> _petList = apiResponse.object;
+      _petListController.add(_petList);
+    }
     return apiResponse;
-  }*/
+  }
 }

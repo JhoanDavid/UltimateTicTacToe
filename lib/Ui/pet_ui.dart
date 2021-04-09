@@ -22,7 +22,7 @@ class _PetRegisterState extends State<PetRegister> {
 
   PetBloc petBloc;
   String _sex;
-  List<String> _list = List();
+  List<String> _list = [];
 
   Pet pet = Pet(
       id: null,
@@ -31,21 +31,21 @@ class _PetRegisterState extends State<PetRegister> {
       sex: '',
       idDuenio: '',
       age: 0,
-      creationDate: new DateTime.utc(2021, 04, 07),
+      creationDate: new DateTime.now(),
       state: true);
 
   void _selection(String selectType) {
     setState(() {
       _sex = selectType;
       String _type;
-      if (_sex == "Macho") {
-        _type = "Macho";
-        _list = ["Macho", "Hembra"];
+      if (_sex == 'Macho') {
+        _type = 'Macho';
+        _list = ['Macho', 'Hembra'];
         pet.sex = _type;
       }
-      if (_sex == "Hembra") {
-        _type = "Hembra";
-        _list = ["Hembra", "Macho"];
+      if (_sex == 'Hembra') {
+        _type = 'Hembra';
+        _list = ['Hembra', 'Macho'];
         pet.sex = _type;
       }
 
@@ -106,11 +106,11 @@ class _PetRegisterState extends State<PetRegister> {
   }
 
   void setPet(String value, String title) {
-    if (title == "Nombre") pet.name = value;
-    if (title == "Raza") pet.breed = value;
-    if (title == "Sexo") pet.sex = value;
-    if (title == "Dueño") pet.idDuenio = value;
-    if (title == "Edad") pet.age = int.parse(value);
+    if (title == 'Nombre') pet.name = value;
+    if (title == 'Raza') pet.breed = value;
+    if (title == 'Sexo') pet.sex = value;
+    if (title == 'Dueño') pet.idDuenio = value;
+    if (title == 'Edad') pet.age = int.parse(value);
   }
 
   Widget _registryBody() {
@@ -118,8 +118,8 @@ class _PetRegisterState extends State<PetRegister> {
       key: _formRegister,
       child: Column(
         children: <Widget>[
-          _entryField("Nombre"),
-          _entryField("Raza"),
+          _entryField('Nombre'),
+          _entryField('Raza'),
           SizedBox(
             height: 20.0,
           ),
@@ -170,8 +170,8 @@ class _PetRegisterState extends State<PetRegister> {
           SizedBox(
             height: 20.0,
           ),
-          _entryField("Dueño"),
-          _entryField("Edad")
+          _entryField('Dueño'),
+          _entryField('Edad')
         ],
       ),
     );

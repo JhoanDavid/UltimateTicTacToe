@@ -26,7 +26,7 @@ class Pet {
         sex: json['sexo'],
         idDuenio: json['idCliente'],
         age: json['edad'],
-        creationDate: DateTime.parse(json['creationDate']),
+        //creationDate: DateTime.parse(json['creationDate']),
         state: json['estado']);
   }
   Map<String, dynamic> toJson() => {
@@ -45,6 +45,7 @@ class Pet {
         'sexo': sex,
         'idCliente': idDuenio,
         'edad': age,
-        'estado': state
+        'estado': state,
+        'fechaCreacion': creationDate.toIso8601String()
       };
 }
