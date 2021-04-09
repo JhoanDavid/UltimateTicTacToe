@@ -10,6 +10,10 @@ class PetBloc {
   var apiresponse = ApiResponse();
   final _petController = StreamController<Pet>.broadcast();
   final _petListController = StreamController<List<Pet>>.broadcast();
+
+  Stream<Pet> get petStream => _petController.stream;
+  Stream<List<Pet>> get petList => _petListController.stream;
+
   Future<ApiResponse> createPet(Pet pet) async {
     ApiResponse apiResponse = await _repository.insertPet(pet);
     if (apiResponse.statusResponse == 200) {

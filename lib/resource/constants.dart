@@ -1,6 +1,6 @@
 class Constants {
   static const urlAuthority =
-      'http://ec2-18-216-139-106.us-east-2.compute.amazonaws.com:8090';
+      'ec2-18-216-139-106.us-east-2.compute.amazonaws.com:8090';
   static const pathBase = '/api/mascotas';
 
   // API

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:ultimate_tic_tac_toe/Model/pet_model.dart';
 import 'package:http/http.dart' as http;
@@ -11,7 +12,7 @@ class PetApiService {
   ErrorApiResponse _error;
 
   Future<ApiResponse> getAllPet() async {
-    List<Pet> listPets = List();
+    List<Pet> listPets = [];
     ApiResponse apiResponse = ApiResponse(statusResponse: 0);
     Uri uri = Uri.http(Constants.urlAuthority, Constants.urlFindAllPets);
     var res = await http.get(uri);
@@ -27,6 +28,7 @@ class PetApiService {
       apiResponse.object = listPets;
     } else {
       _error = ErrorApiResponse.fromJson(resBody);
+
       apiResponse.object = _error;
     }
     return apiResponse;
@@ -74,7 +76,9 @@ class PetApiService {
     ApiResponse apiResponse = ApiResponse(statusResponse: 0);
     var body = json.encode(pet.toJsonRegistry());
     Uri uri = Uri.http(Constants.urlAuthority, Constants.urlInsertPet);
-    var res = await http.post(uri, body: body);
+    var res = await http.post(uri,
+        headers: {HttpHeaders.contentTypeHeader: 'application/json'},
+        body: body);
 
     var resBody = json.decode(res.body);
     apiResponse.statusResponse = res.statusCode;
@@ -93,7 +97,9 @@ class PetApiService {
     var body = json.encode(pet.toJson());
     Uri uri = Uri.http(
         Constants.urlAuthority, Constants.pathBase + Constants.urlUpdatePet);
-    var res = await http.put(uri, body: body);
+    var res = await http.put(uri,
+        headers: {HttpHeaders.contentTypeHeader: 'application/json'},
+        body: body);
 
     var resBody = json.decode(res.body);
     apiResponse.statusResponse = res.statusCode;
