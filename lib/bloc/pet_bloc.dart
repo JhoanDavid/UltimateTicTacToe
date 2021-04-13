@@ -10,9 +10,17 @@ class PetBloc {
   var apiresponse = ApiResponse();
   final _petController = StreamController<Pet>.broadcast();
   final _petListController = StreamController<List<Pet>>.broadcast();
-
+  List<Pet> _petListMethod;
   Stream<Pet> get petStream => _petController.stream;
   Stream<List<Pet>> get petList => _petListController.stream;
+
+  void filter(String searchQuery) {
+    List<Pet> _filteredList = _petListMethod
+        .where((Pet pet) =>
+            pet.name.toLowerCase().contains(searchQuery.toLowerCase()))
+        .toList();
+    _petListController.sink.add(_filteredList);
+  }
 
   Future<ApiResponse> createPet(Pet pet) async {
     ApiResponse apiResponse = await _repository.insertPet(pet);
@@ -42,6 +50,7 @@ class PetBloc {
     ApiResponse apiResponse = await _repository.getAllPet();
     if (apiResponse.statusResponse == 200) {
       List<Pet> _petList = apiResponse.object;
+      _petListMethod = _petList;
       _petListController.add(_petList);
     }
     return apiResponse;

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:ultimate_tic_tac_toe/ui/Pet/home_pet_ui.dart';
+import 'package:ultimate_tic_tac_toe/ui/first_page_ui.dart';
 
 void main() {
   runApp(MyApp());
@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomePetPage(),
+      home: FirstPage(),
     );
   }
 }

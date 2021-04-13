@@ -17,7 +17,7 @@ class _InsertPetPageState extends State<InsertPetPage> {
   final GlobalKey<FormState> _formRegister = GlobalKey<FormState>();
 
   PetBloc petBloc;
-  String _sex;
+  String _sex = 'Macho';
   List<String> _list = [];
 
   Pet pet = Pet(

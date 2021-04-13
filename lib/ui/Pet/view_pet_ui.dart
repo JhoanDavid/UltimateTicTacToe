@@ -48,27 +48,32 @@ class _ViewPetPageState extends State<ViewPetPage> {
                 color: Colors.black87),
           ),
           SizedBox(
-            height: 10,
+            height: MediaQuery.of(context).size.height * 0.009,
           ),
           Container(
+              alignment: Alignment.center,
+              height: MediaQuery.of(context).size.height * 0.065,
+              width: MediaQuery.of(context).size.width * 0.90,
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(20)),
-                  border: Border.all(width: 1.5, color: Colors.black38)),
+                  borderRadius: BorderRadius.all(Radius.circular(15)),
+                  border: Border.all(width: 2, color: Colors.black12)),
               child: Text(
-                  varName == 'name'
-                      ? pet.name
-                      : varName == 'breed'
-                          ? pet.breed
-                          : varName == 'idDuenio'
-                              ? pet.idDuenio
-                              : varName == 'age'
-                                  ? pet.age
-                                  : null,
-                  style: GoogleFonts.montserrat(
-                      textStyle: Theme.of(context).textTheme.headline4,
-                      fontSize: 15,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.black87)))
+                varName == 'name'
+                    ? pet.name.toString()
+                    : varName == 'breed'
+                        ? pet.breed.toString()
+                        : varName == 'idDuenio'
+                            ? pet.idDuenio.toString()
+                            : varName == 'age'
+                                ? pet.age.toString()
+                                : null,
+                style: GoogleFonts.montserrat(
+                    textStyle: Theme.of(context).textTheme.headline4,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.black54),
+                textAlign: TextAlign.center,
+              ))
         ],
       ),
     );
@@ -79,6 +84,17 @@ class _ViewPetPageState extends State<ViewPetPage> {
       key: _formRegister,
       child: Column(
         children: <Widget>[
+          Container(
+              alignment: Alignment.center,
+              height: MediaQuery.of(context).size.height * 0.15,
+              width: MediaQuery.of(context).size.width * 0.32,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(100)),
+                  border: Border.all(width: 8, color: Colors.black12),
+                  image: DecorationImage(
+                    image: AssetImage('assets/img/pets.jpg'),
+                    fit: BoxFit.fill,
+                  ))),
           _field('Nombre', 'name'),
           _field('Raza', 'breed'),
           SizedBox(
@@ -88,6 +104,7 @@ class _ViewPetPageState extends State<ViewPetPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text('Sexo',
                         style: GoogleFonts.montserrat(
@@ -100,7 +117,11 @@ class _ViewPetPageState extends State<ViewPetPage> {
                     ),
                     DropdownButton<String>(
                       disabledHint: Text(pet.sex,
-                          style: TextStyle(color: Colors.black87)),
+                          style: GoogleFonts.montserrat(
+                              textStyle: Theme.of(context).textTheme.headline4,
+                              fontSize: 20,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.black54)),
                       icon: Icon(Icons.arrow_drop_down),
                       iconSize: 24,
                       elevation: 16,
@@ -159,6 +180,7 @@ class _ViewPetPageState extends State<ViewPetPage> {
         children: <Widget>[
           BackgroundWidget(),
           Container(
+            alignment: Alignment.topCenter,
             padding: EdgeInsets.symmetric(horizontal: 20),
             child: SingleChildScrollView(
               child: Column(
@@ -166,7 +188,7 @@ class _ViewPetPageState extends State<ViewPetPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   SizedBox(
-                    height: 50,
+                    height: MediaQuery.of(context).size.height * 0.10,
                   ),
                   _registryBody(),
                   SizedBox(

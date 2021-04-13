@@ -24,7 +24,6 @@ class _EditPetPageState extends State<EditPetPage> {
   @override
   void initState() {
     super.initState();
-    lista();
     petBloc = PetBloc();
     pet = Pet(
         id: widget.pet.id,
@@ -35,11 +34,12 @@ class _EditPetPageState extends State<EditPetPage> {
         age: widget.pet.age,
         creationDate: widget.pet.creationDate,
         state: widget.pet.state);
+    lista();
   }
 
   void _selection(String selectType) {
     setState(() {
-      _sex = selectType;
+      pet.sex = selectType;
       String _type;
       if (_sex == 'Macho') {
         _type = 'Macho';
@@ -52,12 +52,16 @@ class _EditPetPageState extends State<EditPetPage> {
         pet.sex = _type;
       }
 
-      _sex = _type;
+      pet.sex = _type;
     });
   }
 
   List<String> lista() {
-    _list = ['Macho', 'Hembra'];
+    if (pet.sex == 'Macho') {
+      _list = ['Macho', 'Hembra'];
+    } else if (pet.sex == 'Hembra') {
+      _list = ['Hembra', 'Macho'];
+    }
     return _list;
   }
 
@@ -83,6 +87,15 @@ class _EditPetPageState extends State<EditPetPage> {
                   borderRadius: BorderRadius.all(Radius.circular(20)),
                   border: Border.all(width: 1.5, color: Colors.black87)),
               child: TextFormField(
+                initialValue: title == 'Nombre'
+                    ? pet.name.toString()
+                    : title == 'Raza'
+                        ? pet.breed.toString()
+                        : title == 'Dueño'
+                            ? pet.idDuenio.toString()
+                            : title == 'Edad'
+                                ? pet.age.toString()
+                                : null,
                 onSaved: (value) {
                   setPet(value, title);
                 },
@@ -242,7 +255,7 @@ class _EditPetPageState extends State<EditPetPage> {
                       child: Text('Actualizar Mascota',
                           style: GoogleFonts.montserrat(
                               textStyle: Theme.of(context).textTheme.headline4,
-                              fontSize: 25,
+                              fontSize: 20,
                               fontWeight: FontWeight.w500,
                               color: Colors.black87))),
                 ],
