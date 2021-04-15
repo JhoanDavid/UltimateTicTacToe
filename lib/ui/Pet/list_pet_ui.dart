@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:ultimate_tic_tac_toe/bloc/pet_bloc.dart';
 import 'package:ultimate_tic_tac_toe/Model/pet_model.dart';
 import 'package:ultimate_tic_tac_toe/ui/Pet/edit_pet_ui.dart';
+import 'package:ultimate_tic_tac_toe/ui/Pet/home_pet_ui.dart';
 import 'package:ultimate_tic_tac_toe/ui/Pet/view_pet_ui.dart';
 import 'package:ultimate_tic_tac_toe/utils/apiresponse_model.dart';
 import 'package:ultimate_tic_tac_toe/widget/background_widget.dart';
@@ -50,6 +51,53 @@ class _ListPetPageState extends State<ListPetPage> {
     }
   }
 
+  Future showDialogSuccess(BuildContext context) async {
+    return showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          content: Text('Se eliminó correctamente la mascota',
+              style: GoogleFonts.happyMonkey(
+                fontSize: 25,
+                fontWeight: FontWeight.w400,
+                color: Colors.black87,
+                height: 1.5,
+              )),
+          actions: <Widget>[
+            ElevatedButton(
+              style: ButtonStyle(
+                  backgroundColor:
+                      MaterialStateProperty.all<Color>(Colors.green[600])),
+              child: Container(
+                  height: (MediaQuery.of(context).size.height * 0.08),
+                  width: (MediaQuery.of(context).size.width * 0.30),
+                  child: Center(
+                    child: RichText(
+                      text: TextSpan(
+                          style: Theme.of(context).textTheme.bodyText1,
+                          children: [
+                            TextSpan(
+                                text: 'Ok',
+                                style: GoogleFonts.happyMonkey(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w400,
+                                  color: Colors.black87,
+                                  height: 1.5,
+                                ))
+                          ]),
+                    ),
+                  )),
+              onPressed: () {
+                _loadPets();
+                Navigator.of(context).pop();
+              },
+            )
+          ],
+        );
+      },
+    );
+  }
+
   Future showDialogConfirmation(BuildContext context, int id) async {
     return showDialog(
       context: context,
@@ -89,8 +137,8 @@ class _ListPetPageState extends State<ListPetPage> {
               onPressed: () {
                 petBloc.deletePet(id).then((ApiResponse resp) {
                   if (resp.statusResponse == 200) {
-                    _loadPets();
-                    Navigator.of(context).pop();
+                    showDialogSuccess(context)
+                        .whenComplete(() => Navigator.of(context).pop());
                   }
                 });
               },
@@ -167,7 +215,9 @@ class _ListPetPageState extends State<ListPetPage> {
   Widget _backButton() {
     return InkWell(
       onTap: () {
-        Navigator.pop(context);
+        Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(builder: (context) => HomePetPage()),
+            (Route<dynamic> route) => false);
       },
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 10),
@@ -252,5 +302,10 @@ class _ListPetPageState extends State<ListPetPage> {
         ],
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 }

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ultimate_tic_tac_toe/Bloc/pet_bloc.dart';
 import 'package:ultimate_tic_tac_toe/Model/pet_model.dart';
+import 'package:ultimate_tic_tac_toe/ui/first_page_ui.dart';
 import 'package:ultimate_tic_tac_toe/utils/apiresponse_model.dart';
 import 'package:ultimate_tic_tac_toe/widget/background_widget.dart';
 
@@ -109,6 +110,55 @@ class _InsertPetPageState extends State<InsertPetPage> {
     if (title == 'Edad') pet.age = int.parse(value);
   }
 
+  Future showDialogSuccess(BuildContext context) async {
+    return showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          content: Text('Se creó correctamente la mascota',
+              style: GoogleFonts.happyMonkey(
+                fontSize: 25,
+                fontWeight: FontWeight.w400,
+                color: Colors.black87,
+                height: 1.5,
+              )),
+          actions: <Widget>[
+            ElevatedButton(
+              style: ButtonStyle(
+                  backgroundColor:
+                      MaterialStateProperty.all<Color>(Colors.green[600])),
+              child: Container(
+                  height: (MediaQuery.of(context).size.height * 0.08),
+                  width: (MediaQuery.of(context).size.width * 0.30),
+                  child: Center(
+                    child: RichText(
+                      text: TextSpan(
+                          style: Theme.of(context).textTheme.bodyText1,
+                          children: [
+                            TextSpan(
+                                text: 'Ok',
+                                style: GoogleFonts.happyMonkey(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w400,
+                                  color: Colors.black87,
+                                  height: 1.5,
+                                ))
+                          ]),
+                    ),
+                  )),
+              onPressed: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) {
+                  return FirstPage();
+                }));
+              },
+            )
+          ],
+        );
+      },
+    );
+  }
+
   Widget _registryBody() {
     return Form(
       key: _formRegister,
@@ -198,14 +248,14 @@ class _InsertPetPageState extends State<InsertPetPage> {
     );
   }
 
-  void submit() {
+  void submit(BuildContext context) {
     final formRegister = _formRegister.currentState;
     if (formRegister.validate()) {
       formRegister.save();
       pet.state = false;
       petBloc.createPet(pet).then((ApiResponse resp) {
         if (resp.statusResponse == 200) {
-          Navigator.of(context).pop();
+          showDialogSuccess(context);
         }
       });
     }
@@ -239,7 +289,7 @@ class _InsertPetPageState extends State<InsertPetPage> {
                                   10,
                                   MediaQuery.of(context).size.width * 0.15,
                                   10))),
-                      onPressed: () => submit(),
+                      onPressed: () => submit(context),
                       child: Text('Registrar Mascota',
                           style: GoogleFonts.montserrat(
                               textStyle: Theme.of(context).textTheme.headline4,

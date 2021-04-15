@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:ultimate_tic_tac_toe/ui/first_page_ui.dart';
 
-import 'Ui/pet_ui.dart';
-
 void main() {
   runApp(MyApp());
 }
