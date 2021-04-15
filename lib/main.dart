@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:ultimate_tic_tac_toe/ui/first_page_ui.dart';
 
 import 'Ui/pet_ui.dart';
 
@@ -13,11 +14,11 @@ class MyApp extends StatelessWidget {
     SystemChrome.setEnabledSystemUIOverlays([]);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Tic Tac Toe',
+      title: 'VETERINARIA',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: PetRegister(),
+      home: FirstPage(),
     );
   }
 }

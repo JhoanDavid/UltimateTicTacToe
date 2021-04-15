@@ -28,6 +28,7 @@ class PetApiService {
       apiResponse.object = listPets;
     } else {
       _error = ErrorApiResponse.fromJson(resBody);
+
       apiResponse.object = _error;
     }
     return apiResponse;
@@ -76,7 +77,7 @@ class PetApiService {
     var body = json.encode(pet.toJsonRegistry());
     Uri uri = Uri.http(Constants.urlAuthority, Constants.urlInsertPet);
     var res = await http.post(uri,
-        headers: {HttpHeaders.contentTypeHeader: "application/json"},
+        headers: {HttpHeaders.contentTypeHeader: 'application/json'},
         body: body);
 
     var resBody = json.decode(res.body);
@@ -94,10 +95,10 @@ class PetApiService {
   Future<ApiResponse> updatePet(Pet pet) async {
     ApiResponse apiResponse = ApiResponse(statusResponse: 0);
     var body = json.encode(pet.toJson());
-    Uri uri = Uri.http(
-        Constants.urlAuthority, Constants.pathBase + Constants.urlUpdatePet);
-    var res = await http.put(uri, body: body);
-
+    Uri uri = Uri.http(Constants.urlAuthority, Constants.urlUpdatePet);
+    var res = await http.put(uri,
+        headers: {HttpHeaders.contentTypeHeader: 'application/json'},
+        body: body);
     var resBody = json.decode(res.body);
     apiResponse.statusResponse = res.statusCode;
     if (apiResponse.statusResponse == 200) {
@@ -113,17 +114,13 @@ class PetApiService {
   Future<ApiResponse> deletePet(int idPet) async {
     ApiResponse apiResponse = ApiResponse(statusResponse: 0);
     var queryParameters = {'id': idPet.toString()};
-    Uri uri = Uri.http(Constants.urlAuthority,
-        Constants.pathBase + Constants.urlDeletePet, queryParameters);
+    Uri uri = Uri.http(
+        Constants.urlAuthority, Constants.urlDeletePet, queryParameters);
     var res = await http.delete(uri);
-
-    var resBody = json.decode(res.body);
     apiResponse.statusResponse = res.statusCode;
     if (apiResponse.statusResponse == 200) {
-      _pet = Pet.fromJson(resBody);
       apiResponse.object = _pet;
     } else {
-      _error = ErrorApiResponse.fromJson(resBody);
       apiResponse.object = _error;
     }
     return apiResponse;
