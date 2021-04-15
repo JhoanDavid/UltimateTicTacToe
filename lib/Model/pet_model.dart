@@ -45,6 +45,7 @@ class Pet {
         'sexo': sex,
         'idCliente': idDuenio,
         'edad': age,
-        'estado': state
+        'estado': state,
+        'fechaCreacion': creationDate.toIso8601String()
       };
 }
