@@ -35,7 +35,7 @@ dependencies:
   
   google_fonts: ^1.1.2
   
-  lottie: ^0.7.0+1
+  #lottie: ^0.7.0+1
   
   flutter_hooks: ^0.15.0
 
@@ -43,6 +43,10 @@ dev_dependencies:
   test:
   flutter_test:
     sdk: flutter
+  logging: ^1.0.0
+  mockito: ^5.0.4
+  build_resolvers: ^2.0.0
+  build_runner: ^1.12.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
