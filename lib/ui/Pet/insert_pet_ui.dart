@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ultimate_tic_tac_toe/Bloc/pet_bloc.dart';
 import 'package:ultimate_tic_tac_toe/Model/pet_model.dart';
+import 'package:ultimate_tic_tac_toe/ui/Pet/list_pet_ui.dart';
 import 'package:ultimate_tic_tac_toe/ui/first_page_ui.dart';
 import 'package:ultimate_tic_tac_toe/utils/apiresponse_model.dart';
 import 'package:ultimate_tic_tac_toe/widget/background_widget.dart';
@@ -147,10 +148,9 @@ class _InsertPetPageState extends State<InsertPetPage> {
                     ),
                   )),
               onPressed: () {
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) {
-                  return FirstPage();
-                }));
+                Navigator.of(context).pushAndRemoveUntil(
+                    MaterialPageRoute(builder: (context) => ListPetPage()),
+                    (Route<dynamic> route) => false);
               },
             )
           ],

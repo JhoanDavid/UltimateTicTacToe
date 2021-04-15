@@ -54,7 +54,7 @@ class _FirstPageState extends State<FirstPage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.supervised_user_circle),
-            label: 'Usuarios',
+            label: '<EMPTY>',
           ),
         ],
         currentIndex: _selectedIndex,

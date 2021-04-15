@@ -111,37 +111,70 @@ class _ListPetPageState extends State<ListPetPage> {
                 height: 1.5,
               )),
           actions: <Widget>[
-            ElevatedButton(
-              style: ButtonStyle(
-                  backgroundColor:
-                      MaterialStateProperty.all<Color>(Colors.red[600])),
-              child: Container(
-                  height: (MediaQuery.of(context).size.height * 0.08),
-                  width: (MediaQuery.of(context).size.width * 0.30),
-                  child: Center(
-                    child: RichText(
-                      text: TextSpan(
-                          style: Theme.of(context).textTheme.bodyText1,
-                          children: [
-                            TextSpan(
-                                text: 'Seguro',
-                                style: GoogleFonts.happyMonkey(
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w400,
-                                  color: Colors.black87,
-                                  height: 1.5,
-                                ))
-                          ]),
-                    ),
-                  )),
-              onPressed: () {
-                petBloc.deletePet(id).then((ApiResponse resp) {
-                  if (resp.statusResponse == 200) {
-                    showDialogSuccess(context)
-                        .whenComplete(() => Navigator.of(context).pop());
-                  }
-                });
-              },
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                ElevatedButton(
+                  style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStateProperty.all<Color>(Colors.red[600])),
+                  child: Container(
+                      height: (MediaQuery.of(context).size.height * 0.08),
+                      width: (MediaQuery.of(context).size.width * 0.15),
+                      child: Center(
+                        child: RichText(
+                          text: TextSpan(
+                              style: Theme.of(context).textTheme.bodyText1,
+                              children: [
+                                TextSpan(
+                                    text: 'Si',
+                                    style: GoogleFonts.happyMonkey(
+                                      fontSize: 25,
+                                      fontWeight: FontWeight.w400,
+                                      color: Colors.black87,
+                                      height: 1.5,
+                                    ))
+                              ]),
+                        ),
+                      )),
+                  onPressed: () {
+                    petBloc.deletePet(id).then((ApiResponse resp) {
+                      if (resp.statusResponse == 200) {
+                        showDialogSuccess(context)
+                            .whenComplete(() => Navigator.of(context).pop());
+                      }
+                    });
+                  },
+                ),
+                ElevatedButton(
+                  style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all<Color>(
+                          Colors.blueGrey[300])),
+                  child: Container(
+                      height: (MediaQuery.of(context).size.height * 0.08),
+                      width: (MediaQuery.of(context).size.width * 0.15),
+                      child: Center(
+                        child: RichText(
+                          text: TextSpan(
+                              style: Theme.of(context).textTheme.bodyText1,
+                              children: [
+                                TextSpan(
+                                    text: 'No',
+                                    style: GoogleFonts.happyMonkey(
+                                      fontSize: 25,
+                                      fontWeight: FontWeight.w400,
+                                      color: Colors.black87,
+                                      height: 1.5,
+                                    ))
+                              ]),
+                        ),
+                      )),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                )
+              ],
             )
           ],
         );

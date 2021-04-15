@@ -55,6 +55,7 @@ class PetBloc {
     }
     return apiResponse;
   }
+
   void dispose() {
     _petController.close();
     _petListController.close();
@@ -62,13 +63,14 @@ class PetBloc {
 
   Future<ApiResponse> getPetByName(String name) async {
     ApiResponse apiResponse = await _repository.getPetByName(name);
+    print(apiResponse.statusResponse);
     if (apiResponse.statusResponse == 200) {
-      List<Pet> _petList = apiResponse.object;
-      _petListController.add(_petList);
+      print(apiResponse.object);
+      List<dynamic> _pet = apiResponse.object;
     }
     return apiResponse;
   }
-  
+
   Future<ApiResponse> getPetById(int id) async {
     ApiResponse apiResponse = await _repository.getPetById(id);
     if (apiResponse.statusResponse == 200) {

@@ -56,15 +56,14 @@ class PetApiService {
   Future<ApiResponse> getPetByName(String name) async {
     ApiResponse apiResponse = ApiResponse(statusResponse: 0);
     var queryParameters = {'nombre': name};
-    Uri uri = Uri.http(Constants.urlAuthority,
-        Constants.pathBase + Constants.urlFindByNamePet, queryParameters);
+    Uri uri = Uri.http(
+        Constants.urlAuthority, Constants.urlFindByNamePet, queryParameters);
     var res = await http.get(uri);
-
     var resBody = json.decode(res.body);
     apiResponse.statusResponse = res.statusCode;
     if (apiResponse.statusResponse == 200) {
-      _pet = Pet.fromJson(resBody);
-      apiResponse.object = _pet;
+      print('ENTRÓ EN API SERVICE');
+      apiResponse.object = resBody;
     } else {
       _error = ErrorApiResponse.fromJson(resBody);
       apiResponse.object = _error;
